@@ -14,19 +14,29 @@ public class Product implements Serializable {
     private String description;         // NVARCHAR(500) NULL
     private String stock;              // INT NOT NULL DEFAULT 0
     private LocalDateTime importDate;   // DATETIME DEFAULT GETDATE()
+     private boolean  Status;
 
     public Product() {}
 
     // Constructor đầy đủ (trừ id vì DB tự tăng)
-    public Product(String name, String price, String description, String stock, LocalDateTime importDate) {
+    public Product(String name, String price, String description, String stock, LocalDateTime importDate, boolean Status) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.stock = stock;
         this.importDate = importDate;
+        this.Status = Status;
     }
 
-    // Constructor tiện khi tạo mới (để importDate null -> DB sẽ GETDATE())
+    public boolean isStatus() {
+        return Status;
+    }
+
+    public void setStatus(boolean Status) {
+        this.Status = Status;
+    }
+
+    
 
     public String getId() {
         return id;

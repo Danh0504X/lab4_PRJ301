@@ -28,19 +28,21 @@ public class UserDao implements IUserDAO {
 
     // --- SQL ---
     private static final String INSERT_SQL =
-        "INSERT INTO Users (username, email, country, role, status, password) VALUES (?, ?, ?, ?, ?, ?)";
+        "INSERT INTO Users (name, email, country, role, status, password) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_BY_ID_SQL =
-        "SELECT id, username, email, country, role, status, password FROM Users WHERE id = ?";
+        "SELECT id, name, email, country, role, status, password FROM Users WHERE id = ?";
     private static final String SELECT_ALL_SQL =
-        "SELECT id, username, email, country, role, status, password FROM Users";
+        "SELECT id, name, email, country, role, status, password FROM Users";
     private static final String UPDATE_SQL =
-        "UPDATE Users SET username=?, email=?, country=?, role=?, status=?, password=? WHERE id=?";
+        "UPDATE Users SET name=?, email=?, country=?, role=?, status=?, password=? WHERE id=?";
     private static final String DELETE_SQL =
         "DELETE FROM Users WHERE id=?";
     private static final String SEARCH_SQL =
-        "SELECT id, username, email, country, role, status, password FROM Users " +
-        "WHERE username LIKE ? OR email LIKE ? OR country LIKE ?";
-
+        "SELECT id, name, email, country, role, status, password FROM Users " +
+        "WHERE name LIKE ? OR email LIKE ? OR country LIKE ?";
+    private static final String LOGIN_SQL =
+    "SELECT id, name, email, country, role, status, password, dob " +
+    "FROM Users WHERE name = ? AND password = ? AND status = 1";
     @Override
     public void insertUser(User user) {
         try (Connection con = getConnection();
@@ -131,7 +133,7 @@ public class UserDao implements IUserDAO {
     private User mapRow(ResultSet rs) throws SQLException {
         User u = new User();
         u.setId(rs.getInt("id"));
-        u.setUsername(rs.getString("username"));
+        u.setUsername(rs.getString("name"));
         u.setEmail(rs.getString("email"));
         u.setCountry(rs.getString("country"));
         u.setRole(rs.getString("role"));
@@ -139,4 +141,17 @@ public class UserDao implements IUserDAO {
         u.setPassword(rs.getString("password"));
         return u;
     }
+        
+    public User findByCredentials(String username, String password) {
+    try (Connection con = getConnection();
+         PreparedStatement ps = con.prepareStatement(LOGIN_SQL)) {
+        ps.setString(1, username);
+        ps.setString(2, password); // lab dùng plain; thực tế nên hash
+        try (ResultSet rs = ps.executeQuery()) {
+            return rs.next() ? mapRow(rs) : null;
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("login failed", e);
+    }
+}
 }

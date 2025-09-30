@@ -58,7 +58,9 @@ public class productDAO implements IProductDAO {
     @Override
     public List<Product> selectAllProducts() {
         List<Product> list = new ArrayList<>();
-        String sql = "SELECT * FROM Product";
+        String sql = "SELECT id, name, price, description, stock, import_date, status\n" +
+                    "FROM Product\n" +
+                    "WHERE status = 1;   ";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -75,7 +77,7 @@ public class productDAO implements IProductDAO {
     // --- DELETE ---
     @Override
     public boolean deleteProduct(int id) throws SQLException {
-        String sql = "DELETE FROM Product WHERE id = ?";
+        String sql = "UPDATE Product SET status = 0 WHERE id = ?;";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -109,10 +111,12 @@ public class productDAO implements IProductDAO {
         p.setPrice(rs.getBigDecimal("price").toString());
         p.setDescription(rs.getNString("description"));
         p.setStock(String.valueOf(rs.getInt("stock")));
-
+        p.setStatus(rs.getBoolean("status"));  
         Timestamp ts = rs.getTimestamp("import_date");
         if (ts != null) p.setImportDate(ts.toLocalDateTime());
-
+        
         return p;
     }
+ 
+
 }

@@ -70,12 +70,12 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         List<User> list = userService.findAll();
         req.setAttribute("listUser", list);
-        req.getRequestDispatcher("/WEB-INF/views/userList.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/user/listUser.jsp").forward(req, resp);
     }
     
     private void showCreateForm(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/createUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/user/createUser.jsp").forward(req, resp);
     }
 
     private void createUser(HttpServletRequest req, HttpServletResponse resp)
@@ -98,7 +98,7 @@ public class UserServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         User user = userService.findById(id);
         req.setAttribute("user", user);
-        req.getRequestDispatcher("/WEB-INF/views/editUser.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/user/editUser.jsp").forward(req, resp);
     }
 
     private void updateUser(HttpServletRequest req, HttpServletResponse resp)
@@ -128,6 +128,6 @@ public class UserServlet extends HttpServlet {
         String q = req.getParameter("q");
         List<User> list = userService.searchByKeyword(q);
         req.setAttribute("listUser", list);
-        req.getRequestDispatcher("/WEB-INF/views/userList.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/user/listUser.jsp").forward(req, resp);
     }
 }

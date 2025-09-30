@@ -34,7 +34,7 @@ public class ProductServlet extends HttpServlet {
                 showCreateForm(request, response);
                 break;
             case "delete":
-                deleteProduct(request, response);
+                showDeleteConfirm(request, response);
                 break;
             case "edit":
                 showEditForm(request, response);
@@ -54,6 +54,9 @@ public class ProductServlet extends HttpServlet {
         switch (action) {
             case "insert":
                 insertProduct(request, response);
+                break;
+            case "delete":
+                performDelete(request, response);
                 break;
             case "update":
                 updateProduct(request, response);
@@ -83,19 +86,25 @@ public class ProductServlet extends HttpServlet {
         String price = trimOrNull(request.getParameter("price"));
         String description = trimOrNull(request.getParameter("description"));
         String stock = trimOrNull(request.getParameter("stock"));
-
+        
+         String statusParam = request.getParameter("status");
+    boolean status = (statusParam == null)  // mặc định ACTIVE
+            ? true
+            : ("1".equals(statusParam) || "true".equalsIgnoreCase(statusParam) || "on".equalsIgnoreCase(statusParam));
+    
         if (name == null || price == null || stock == null) {
             request.setAttribute("error", "Vui lòng nhập đủ Name, Price, Stock.");
             request.setAttribute("old_name", name);
             request.setAttribute("old_price", price);
             request.setAttribute("old_description", description);
             request.setAttribute("old_stock", stock);
+            request.setAttribute("old_Status", status);
             showCreateForm(request, response);
             return;
         }
 
         try {
-            Product p = new Product(name, price, description, stock, (LocalDateTime) null);
+            Product p = new Product(name, price, description, stock, (LocalDateTime) null, status);
             productService.create(p);
             response.sendRedirect(request.getContextPath() + "/products?msg=created");
         } catch (SQLException | IllegalArgumentException e) {
@@ -104,26 +113,55 @@ public class ProductServlet extends HttpServlet {
             showCreateForm(request, response);
         }
     }
+    
+    
 
-    private void deleteProduct(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        String idRaw = request.getParameter("id");
-        String page = request.getParameter("page");
-        if (idRaw == null) {
-            response.sendRedirect(request.getContextPath() + "/products?err=missing_id");
+    private void showDeleteConfirm(HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
+    String idRaw = request.getParameter("id");
+    if (idRaw == null) {
+        response.sendRedirect(request.getContextPath() + "/products?err=missing_id");
+        return;
+    }
+    try {
+        int id = Integer.parseInt(idRaw);
+        // lấy cả sản phẩm đã ẩn để hiển thị xác nhận
+        Product p = productService.getById(id);
+        if (p == null) {
+            response.sendRedirect(request.getContextPath() + "/products?err=not_found");
             return;
         }
-        try {
-            int id = Integer.parseInt(idRaw);
-            boolean ok = productService.delete(id);
-            String qs = ok ? "msg=deleted" : "err=delete_failed";
-            if (page != null) qs += "&page=" + page;
-            response.sendRedirect(request.getContextPath() + "/products?" + qs);
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/products?err=" + e.getMessage());
-        }
+        request.setAttribute("product", p);
+        request.getRequestDispatcher("/WEB-INF/product/deleteProduct.jsp").forward(request, response);
+    } catch (NumberFormatException e) {
+        response.sendRedirect(request.getContextPath() + "/products?err=bad_id");
     }
+}
+
+private void performDelete(HttpServletRequest request, HttpServletResponse response)
+        throws IOException {
+    String idRaw = request.getParameter("id");
+    String page   = request.getParameter("page");   // giữ phân trang
+    String q      = request.getParameter("q");      // nếu có search, giữ luôn
+
+    if (idRaw == null) {
+        response.sendRedirect(request.getContextPath() + "/products?err=missing_id");
+        return;
+    }
+    try {
+        int id = Integer.parseInt(idRaw);
+        boolean ok = productService.delete(id); // <--- SOFT DELETE
+        StringBuilder qs = new StringBuilder(ok ? "msg=deleted" : "err=delete_failed");
+        if (page != null && !page.isEmpty()) qs.append("&page=").append(page);
+        if (q != null && !q.isEmpty())       qs.append("&q=").append(java.net.URLEncoder.encode(q, java.nio.charset.StandardCharsets.UTF_8));
+        response.sendRedirect(request.getContextPath() + "/products?" + qs);
+    } catch (NumberFormatException e) {
+        response.sendRedirect(request.getContextPath() + "/products?err=bad_id");
+    } catch (Exception e) {
+        e.printStackTrace();
+        response.sendRedirect(request.getContextPath() + "/products?err=exception");
+    }
+}
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

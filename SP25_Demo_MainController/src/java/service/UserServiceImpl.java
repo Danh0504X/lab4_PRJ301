@@ -51,4 +51,11 @@ public class UserServiceImpl implements IUserService {
     public List<User> searchByKeyword(String keyword) {
         return userDao.searchByKeyword(keyword);
     }
+    
+    @Override
+public User login(String username, String password) {
+    if (username == null || password == null) return null;
+    return userDao.findByCredentials(username.trim(), password.trim());
+}
+
 }

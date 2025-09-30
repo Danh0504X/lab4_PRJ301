@@ -21,4 +21,6 @@ public interface IUserDAO {
 
     // thêm:
     List<User> searchByKeyword(String keyword);
+
+    public User findByCredentials(String trim, String trim0);
 }

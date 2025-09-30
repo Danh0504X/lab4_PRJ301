@@ -18,6 +18,8 @@ public interface IUserService {
 
     // nếu cần search
     List<User> searchByKeyword(String keyword);
+    User login(String username, String password);
+
 }
 
 
