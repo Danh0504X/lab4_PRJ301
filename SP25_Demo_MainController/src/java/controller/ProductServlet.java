@@ -29,6 +29,7 @@ public class ProductServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) action = "list";
 
+        // Filter đã xử lý phân quyền, không cần check role ở đây nữa
         switch (action) {
             case "new":
                 showCreateForm(request, response);
@@ -51,6 +52,7 @@ public class ProductServlet extends HttpServlet {
         String action = request.getParameter("action");
         if (action == null) action = "";
 
+        // Filter đã xử lý phân quyền, không cần check role ở đây nữa
         switch (action) {
             case "insert":
                 insertProduct(request, response);
@@ -72,12 +74,12 @@ public class ProductServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Product> products = productService.getAll();
         request.setAttribute("products", products);
-        request.getRequestDispatcher("/WEB-INF/product/productList.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/product/productList.jsp").forward(request, response);
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/product/createProduct.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/product/createProduct.jsp").forward(request, response);
     }
 
     private void insertProduct(HttpServletRequest request, HttpServletResponse response)
@@ -132,7 +134,7 @@ public class ProductServlet extends HttpServlet {
             return;
         }
         request.setAttribute("product", p);
-        request.getRequestDispatcher("/WEB-INF/product/deleteProduct.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/product/deleteProduct.jsp").forward(request, response);
     } catch (NumberFormatException e) {
         response.sendRedirect(request.getContextPath() + "/products?err=bad_id");
     }
@@ -178,7 +180,7 @@ private void performDelete(HttpServletRequest request, HttpServletResponse respo
                 return;
             }
             request.setAttribute("product", p);
-            request.getRequestDispatcher("/WEB-INF/product/editProduct.jsp").forward(request, response);
+            request.getRequestDispatcher("/views/product/editProduct.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/products?err=" + e.getMessage());

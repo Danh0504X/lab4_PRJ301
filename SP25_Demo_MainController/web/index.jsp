@@ -10,9 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="UTF-8">
+        <title>Trang Chủ - Cửa Hàng</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
     </head>
     <body>
-       <% response.sendRedirect(request.getContextPath() + "/login"); %>
+       <% response.sendRedirect(request.getContextPath() + "/carts?action=list"); %>
     </body>
 </html>

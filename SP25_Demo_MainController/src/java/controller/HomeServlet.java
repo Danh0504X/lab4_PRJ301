@@ -33,6 +33,6 @@ public class HomeServlet extends HttpServlet {
 
         req.setAttribute("userCount", userCount);
         req.setAttribute("productCount", productCount);
-        req.getRequestDispatcher("/WEB-INF/home.jsp").forward(req, resp);
+        req.getRequestDispatcher("/home.jsp").forward(req, resp);
     }
 }

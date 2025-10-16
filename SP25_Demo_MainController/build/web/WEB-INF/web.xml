@@ -1,7 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    
+    <!-- Welcome files -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>WEB-INF/index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <!-- Session Configuration -->
+    <session-config>
+        <session-timeout>120</session-timeout> <!-- 120 phút = 2 giờ -->
+    </session-config>
+    
+    <!-- Filter Configuration -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>AuthFilter.AuthFilter</filter-class>
+    </filter>
+    
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filter.AdminFilter</filter-class>
+    </filter>
+    
+    <filter>
+        <filter-name>UserAdminFilter</filter-name>
+        <filter-class>filter.UserAdminFilter</filter-class>
+    </filter>
+    
+    <!-- Filter Mappings -->
+    <!-- UserAdmin Filter cho quản lý user (chỉ Admin) -->
+    <filter-mapping>
+        <filter-name>UserAdminFilter</filter-name>
+        <url-pattern>/users/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- Admin Filter cho quản lý sản phẩm (Admin + Moderator) -->
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/products</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    
+    <!-- Auth Filter cho checkout và các chức năng cần đăng nhập -->
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/checkout</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/view-cart</url-pattern>
+    </filter-mapping>
+    
+    <!-- Error Pages -->
+    <error-page>
+        <error-code>403</error-code>
+        <location>/accessDenied.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/accessDenied.jsp</location>
+    </error-page>
+    
 </web-app>

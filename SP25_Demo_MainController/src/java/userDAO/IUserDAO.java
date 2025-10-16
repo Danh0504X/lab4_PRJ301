@@ -6,13 +6,10 @@ package userDAO;
 
 import java.util.List;
 import model.User;
-import java.sql.SQLException;
-/**
- *
- * @author ADMIN
- */
+
 
 public interface IUserDAO {
+    User findByUsername(String username);
     void insertUser(User user);
     User selectUser(int id);
     List<User> selectAllUsers();

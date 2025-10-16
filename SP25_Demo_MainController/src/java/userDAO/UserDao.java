@@ -71,6 +71,31 @@ public class UserDao implements IUserDAO {
             throw new RuntimeException("selectUser failed", e);
         }
     }
+    
+    @Override
+    public User findByUsername(String username) {
+        String sql = "SELECT * FROM Users WHERE username = ?";
+        try (Connection con = getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    User u = new User();
+                    u.setId(rs.getInt("id"));
+                    u.setUsername(rs.getString("username"));
+                    u.setPassword(rs.getString("password"));
+                    u.setEmail(rs.getString("email"));
+                    u.setCountry(rs.getString("country"));
+                    u.setRole(rs.getString("role"));
+                    u.setStatus(rs.getBoolean("status"));
+                    return u;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // không tìm thấy
+    }
 
     @Override
     public List<User> selectAllUsers() {

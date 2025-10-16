@@ -3,46 +3,56 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/CartService.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/model/User.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/cart.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/product/deleteProduct.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/admin.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/userInf.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/userDAO/UserDao.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/user/editUser.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/IUserService.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/HomeServlet.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/views/demo.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/logout.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/productDao/productDAO.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/auth/login.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/nbproject/build-impl.xml</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/CheckoutServlet.java</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/index.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/user/createUser.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/IProductService.java</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/ProductServiceImpl.java</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/web.xml</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/model/Product.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/dao/DBConnection.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/admin2.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/login3.jsp</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/LogoutServlet.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/ICartService.java</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/userDAO/IUserDAO.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/user/listUser.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/home.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/cart/error.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/OrderDAO/OrderDao.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/model/CartItem.java</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/UserServiceImpl.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/productDao/IProductDAO.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/error.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/ProductServlet.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/product/productList.jsp</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/UserServlet.java</file>
             <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/LoginServlet.java</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/invalid.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/welcome.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/product/editProduct.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/auth/logout.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/product/createProduct.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/product/productList.jsp</file>
-            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/WEB-INF/searchUser.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/cart/success.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/product/createProduct.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/login-required.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/CartServlet.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/CartService.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/model/User.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/META-INF/context.xml</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/cart/cart.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/userDAO/UserDao.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/user/editUser.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/auth/logout.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/filter/UserAdminFilter.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/HomeServlet.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/IUserService.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/productDao/productDAO.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/user/listUser.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/filter/AdminFilter.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/admin-required.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/IProductService.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/product/deleteProduct.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/OrderDAO/IOrderDao.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/dao/DBConnection.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/model/Order.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/productDao/IProductDAO.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/user/createUser.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/cart/productlistcart.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/controller/ProductServlet.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/IOrderService.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/auth/login.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/model/Cart.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/service/OrderService.java</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/accessDenied.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/web/views/product/editProduct.jsp</file>
+            <file>file:/F:/LAB2_PRJ301/SP25_Demo_MainController/src/java/AuthFilter/AuthFilter.java</file>
         </group>
     </open-files>
 </project-private>

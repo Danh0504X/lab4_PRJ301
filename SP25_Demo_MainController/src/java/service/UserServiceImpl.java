@@ -26,6 +26,10 @@ public class UserServiceImpl implements IUserService {
         }
         userDao.insertUser(user);
     }
+    
+    public boolean existsByUsername(String username) {
+    return userDao.findByUsername(username) != null;
+}
 
     @Override
     public User findById(int id) {
